@@ -1,8 +1,9 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, Divider } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import "./App.css";
 import { SpotifySearchComponent } from "./components/SpotifySearch";
+import { EmojiDemo } from "./components/EmojiDemo";
 
 function App() {
   const queryClient = new QueryClient();
@@ -24,6 +25,10 @@ function App() {
           </Typography>
         </Stack>
 
+        <EmojiDemo />
+        
+        <Divider className="my-8" />
+        
         <SpotifySearchComponent />
       </Stack>
     </QueryClientProvider>

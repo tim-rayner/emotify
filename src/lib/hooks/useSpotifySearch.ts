@@ -1,11 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import fetchSpotifySearch from "../fetchSpotifySearch";
+import { convertEmojiToText } from "../emoji";
 
 export function useSpotifySearch(searchTerm: string, token?: string) {
-  console.log("ayyup, just getting the api ready for you duck 🦆");
+  // convert any text with emojis to string
+  const newSearchTerm = convertEmojiToText(searchTerm);
+
+  console.log("newSearchTerm", newSearchTerm);
+
   return useQuery({
-    queryKey: ["spotifySearch", searchTerm, token ?? "no-token-provided"],
+    queryKey: ["spotifySearch", newSearchTerm, token ?? "no-token-provided"],
     queryFn: fetchSpotifySearch,
-    enabled: !!searchTerm && !!token,
+    enabled: !!newSearchTerm && !!token,
   });
 }
